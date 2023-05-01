@@ -1,7 +1,75 @@
 .App {
   text-align: center;
 }
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
 
+select {
+  height: 30px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 20;
+  background: #fff;
+  width: 500px;
+
+  top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  
+  .modal__header {
+    background: lightblue;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .modal__main {
+    padding: 20px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+  }
+  
+  .close-button {
+    border: none;
+    background: transparent;
+    padding: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 36px;
+  }
+  
+  .close-button:hover {
+    color: yellow;
+  }
+  
+  .button {
+    background: green;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background: orange;
+  }
+  
+  td {
+    border: 2px solid black;
+    height: 50px;
+  }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -13,15 +81,14 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
+.App-main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {

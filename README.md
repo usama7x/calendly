@@ -1,3 +1,9 @@
+It is assumed from the requirement document that the business operates from 9 to 3.
+This is a minimal solution inspired from KISS principal with no state management and npm package as per the requirement;
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
