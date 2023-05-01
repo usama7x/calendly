@@ -4,7 +4,7 @@ This is a minimal solution inspired from KISS principal with no state management
 
 Always open for improvements :)
 
-
+<img width="1102" alt="image" src="https://user-images.githubusercontent.com/48601994/235467433-9046d647-b012-4c06-bb76-a70178f12a16.png">
 
 
 # Getting Started with Create React App
