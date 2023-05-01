@@ -1,5 +1,8 @@
 It is assumed from the requirement document that the business operates from 9 to 3.
+
 This is a minimal solution inspired from KISS principal with no state management and npm package as per the requirement;
+
+Always open for improvements :)
 
 
 

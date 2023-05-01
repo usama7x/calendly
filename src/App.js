@@ -1,12 +1,16 @@
 import { useState } from "react";
 import "./App.css";
 import { Modal } from "./Modal";
-import { getCandidateSlots } from "./utils";
-import { LOCATIONS, WORKING_HOURS, BOOKED_COLOR, BACKGROUND_COLOR } from './constants';
+import { bookSlots } from "./utils";
+import {
+  LOCATIONS,
+  WORKING_HOURS,
+  INVALID_END_TIME,
+} from "./constants";
 
 function App() {
   const [locations] = useState(LOCATIONS);
-  const [workingHours] = useState(WORKING_HOURS)
+  const [workingHours] = useState(WORKING_HOURS);
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -17,25 +21,32 @@ function App() {
     setIsOpen(false);
   };
 
-  const bookMeeting = (location, slots, clearModal, setRenderError) => {
-    const candidateSlots = getCandidateSlots(slots);
-    let isAlreadyBooked = false;
-
-    candidateSlots.forEach(slot => {
-      const cell = document.getElementById(slot).children[location];
-      if (cell.style.backgroundColor === BOOKED_COLOR) {
+  const bookMeeting = (
+    location,
+    slots,
+    clearModal,
+    setRenderError,
+    setErrorMessage
+  ) => {
+    const [start, end] = slots;
+    if (end - start === 1) slots = [start, end - 1];
+    if (start === end) {
+      setErrorMessage(INVALID_END_TIME);
         setRenderError(true);
-        isAlreadyBooked = true;
+      return;
       }
-      if (isAlreadyBooked) return;
-      cell.style.setProperty(BACKGROUND_COLOR, BOOKED_COLOR);
-    });
-
-    if (isAlreadyBooked) return;
+    debugger;
+    const isBookingSuccessful = bookSlots(
+      location,
+      slots,
+      setErrorMessage,
+      setRenderError
+    );
+    if (!isBookingSuccessful) return;
     closeModal();
     setRenderError(false);
     clearModal();
-  } 
+  };
 
   return (
     <div className="App">
@@ -61,15 +72,14 @@ function App() {
           <tbody>
             {workingHours.map((rowContent, rowID) => (
               <tr id={rowContent} key={rowID}>
-                <td>{rowContent + ':00'}</td>
+                <td>{rowContent + ":00"}</td>
                 {locations.map(
                   (block, blockId) =>
                     block && (
                       <td
                         style={{ border: "2px solid black" }}
                         key={blockId}
-                      >
-                      </td>
+                      ></td>
                     )
                 )}
               </tr>
